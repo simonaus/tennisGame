@@ -1,4 +1,3 @@
-
 public class TennisGame1 implements TennisGame {
 
     private int m_score1 = 0; //what is an m-score? Variables should be renamed
@@ -24,7 +23,7 @@ public class TennisGame1 implements TennisGame {
         } else if (m_score1 >= 4 || m_score2 >= 4)
             return win();
         else
-            return getPlayersScore();
+            return getPlayerScore(m_score1) + "-" + getPlayerScore(m_score2);
     }
 
     private String draw() {
@@ -49,10 +48,6 @@ public class TennisGame1 implements TennisGame {
         else return "Win for player2";
     }
 
-    private String getPlayersScore() {
-        return getPlayerScore(m_score1) + "-" + getPlayerScore(m_score2);
-    }
-
     private String getPlayerScore(int score) {
         switch (score) {
             case 0:
@@ -67,4 +62,6 @@ public class TennisGame1 implements TennisGame {
                 return null;
         }
     }
+
+    //tennisgame1
 }
