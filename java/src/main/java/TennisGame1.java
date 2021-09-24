@@ -2,9 +2,6 @@ import models.Player;
 
 public class TennisGame1 implements TennisGame {
 
-    private int m_score1 = 0; //what is an m-score? Variables should be renamed
-    private int m_score2 = 0;
-
     private Player player1;
     private Player player2;
 
@@ -31,20 +28,14 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String draw() {
-        switch (player1.getScore()) {
-            case 0: //could turn this into an array with index and score names
-                return "Love-All";
-            case 1:
-                return "Fifteen-All";
-            case 2:
-                return "Thirty-All";
-            default:
-                return "Deuce";
+        for (DrawStates drawState : DrawStates.values()) {
+            if (drawState.getScore() == player1.getScore()) return drawState.getState();
         }
+        return DrawStates.DEUCE.getState();
     }
 
     private String win() {
-        int minusResult = player1.getScore() - player2.getScore(); //rename this variable
+        int minusResult = player1.getScore() - player2.getScore();
 
         if (minusResult == 1) return "Advantage player1";
         else if (minusResult == -1) return "Advantage player2";
