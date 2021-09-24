@@ -1,13 +1,16 @@
+import models.Player;
+
 public class TennisGame1 implements TennisGame {
 
     private int m_score1 = 0; //what is an m-score? Variables should be renamed
     private int m_score2 = 0;
-    private String player1Name; //should this be an enum or a class?
-    private String player2Name;
+
+    private Player player1;
+    private Player player2;
 
     public TennisGame1(String player1Name, String player2Name) {
-        this.player1Name = player1Name; //make name a variable of the class
-        this.player2Name = player2Name;
+        this.player1 = new Player(player1Name);
+        this.player2 = new Player(player2Name);
     }
 
     public void wonPoint(String playerName) { //if player is an object, can just say, player1.score++
