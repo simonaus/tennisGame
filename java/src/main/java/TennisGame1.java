@@ -27,29 +27,7 @@ public class TennisGame1 implements TennisGame {
         else if (m_score1>=4 || m_score2>=4)
             return win();
         else
-        {
-            for (int i=1; i<3; i++) //this is going through this twice, insted make it a function, assign score to player
-            {
-                if (i==1) tempScore = m_score1;
-                else { score+="-"; tempScore = m_score2;}
-                switch(tempScore)
-                {
-                    case 0:
-                        score+="Love";
-                        break;
-                    case 1:
-                        score+="Fifteen";
-                        break;
-                    case 2:
-                        score+="Thirty";
-                        break;
-                    case 3:
-                        score+="Forty";
-                        break;
-                }
-            }
-        }
-        return score; //put this return throughout the function to avoid a lot of the if statements
+            return getPlayerScore();
     }
 
     private String draw() {
@@ -74,4 +52,31 @@ public class TennisGame1 implements TennisGame {
             else if (minusResult>=2) return "Win for player1";
             else return "Win for player2";
     }
+
+    private String getPlayerScore()
+        {
+            String score = "";
+            int tempScore = 0;
+            for (int i=1; i<3; i++) //this is going through this twice, instead make it a function, assign score to player
+            {
+                if (i==1) tempScore = m_score1;
+                else { score+="-"; tempScore = m_score2;}
+                switch(tempScore)
+                {
+                    case 0:
+                        score+="Love";
+                        break;
+                    case 1:
+                        score+="Fifteen";
+                        break;
+                    case 2:
+                        score+="Thirty";
+                        break;
+                    case 3:
+                        score+="Forty";
+                        break;
+                }
+            }
+            return score;
+        }
 }
