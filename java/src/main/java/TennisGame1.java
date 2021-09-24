@@ -13,24 +13,25 @@ public class TennisGame1 implements TennisGame {
         this.player2 = new Player(player2Name);
     }
 
-    public void wonPoint(String playerName) { //if player is an object, can just say, player1.score++
-        if (playerName == "player1")
-            m_score1 += 1;
-        else
-            m_score2 += 1;
+    public void wonPoint(String playerName) {
+        if (playerName == player1.getPlayerName()) {
+            player1.scorePoint();
+        } else {
+            player2.scorePoint();
+        }
     }
 
-    public String getScore() { //pull out methods, ie. check for draw(), check for win()
-        if (m_score1 == m_score2) {
+    public String getScore() {
+        if (player1.getScore() == player2.getScore()) {
             return draw();
-        } else if (m_score1 >= 4 || m_score2 >= 4)
+        } else if (player1.getScore() >= 4 || player2.getScore() >= 4)
             return win();
         else
-            return getPlayerScore(m_score1) + "-" + getPlayerScore(m_score2);
+            return getPlayerScore(player1.getScore()) + "-" + getPlayerScore(player2.getScore());
     }
 
     private String draw() {
-        switch (m_score1) {
+        switch (player1.getScore()) {
             case 0: //could turn this into an array with index and score names
                 return "Love-All";
             case 1:
@@ -43,7 +44,7 @@ public class TennisGame1 implements TennisGame {
     }
 
     private String win() {
-        int minusResult = m_score1 - m_score2; //rename this variable
+        int minusResult = player1.getScore() - player2.getScore(); //rename this variable
 
         if (minusResult == 1) return "Advantage player1";
         else if (minusResult == -1) return "Advantage player2";
@@ -66,5 +67,4 @@ public class TennisGame1 implements TennisGame {
         }
     }
 
-    //tennisgame1
 }
